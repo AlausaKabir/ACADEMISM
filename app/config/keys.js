@@ -6,7 +6,7 @@ const Port = process.env.PORT
 
 const keys = {
     environment: process.env.NODE_ENV || 'development',
-    port: process.env.PORT || 4000,
+    port: process.env.PORT,
     domain: process.env.DOMAIN || `http://localhost:${Port}`,
     BCRYPT: process.env.BCRYPT || 10,
     adminUrl: process.env.ADMIN_URL || 'admin',
@@ -22,3 +22,5 @@ const keys = {
     }
 
 }
+
+export default keys
