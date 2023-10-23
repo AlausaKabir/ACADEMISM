@@ -4,6 +4,7 @@ import cors from 'cors'
 import bodyParser from 'body-parser'
 import morgan from 'morgan'
 import Logger from '../config/logger.js'
+import authRoue from '../routes/auth-route.js'
 
 
 const app = express()
@@ -20,5 +21,6 @@ app.get('/', (req, res) => {
     res.send('WELCOME TO ACADEMISM!')
 })
 
+app.use('/auth', authRoue)
 
 export default app
