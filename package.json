@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "Academism is a project that tracks Students and Staffs (Academic and Non-Academic staffs) activities. Students are being able to register their bio-data information as new entrants, they can as well register their courses, view and also add/delete course(s) in relevant instances. Lecturers (Academic staffs) can view the registered courses of students, even at the point where they did changes in their initially registered courses. Non-academic staffs are responsible for handling the results of students after their examination and many more abilities",
   "main": "index.js",
+  "type": "module",
   "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,6 +27,7 @@
     "express": "^4.18.2",
     "helmet": "^7.0.0",
     "morgan": "^1.10.0",
-    "winson": "^1.0.0"
+    "winson": "^1.0.0",
+    "winston": "^3.11.0"
   }
 }

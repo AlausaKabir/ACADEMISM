@@ -1,6 +1,6 @@
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
-import keys from './keys'
+import keys from './keys.js'
 
 dotenv.config()
 

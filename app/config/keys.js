@@ -16,7 +16,7 @@ const keys = {
     database: {
         mongoDb: {
             development: {
-                connectionString: process.env.MONDO_URI_DEV
+                connectionString: process.env.MONGO_URI_DEV
             }
         }
     }

@@ -1,6 +1,6 @@
-import server from './app/routes/index'
-import keys from './app/config/keys'
-import MongoConnection from './app/config/database'
+import server from './app/routes/index.js'
+import keys from './app/config/keys.js'
+import MongoConnection from './app/config/database.js'
 
 const Port = keys.port || 8888
 

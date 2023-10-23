@@ -3,7 +3,7 @@ import helmet from 'helmet'
 import cors from 'cors'
 import bodyParser from 'body-parser'
 import morgan from 'morgan'
-import Logger from '../config/logger'
+import Logger from '../config/logger.js'
 
 
 const app = express()
