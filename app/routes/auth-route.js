@@ -5,6 +5,8 @@ const router = express()
 
 router.post(
     '/signup',
+    validate()
+    
 )
 
 
