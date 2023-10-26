@@ -68,8 +68,19 @@ const StudentSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-
+        studentType: {
+            type: String,
+            enum: Object.values(STUDENT_TYPES),
+            required: true
+        },
+        phoneNumber: {
+            type: String,
+            required: true,
+            unique: true,
+            sparse: true
+        }
     },
+
     {timestamps: true}
 )
 
