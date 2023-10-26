@@ -1,2 +1,14 @@
 import {errorResponse, successResponse} from '../utils/response.js'
-i
+import AuthService from '../services/auth-services.js'
+
+/**
+ * @description Authentication Controller 
+ */
+
+
+class AuthController {
+
+
+}
+
+export default AuthController
