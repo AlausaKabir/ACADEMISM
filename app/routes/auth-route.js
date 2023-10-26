@@ -1,11 +1,13 @@
 import express from 'express'
-import keys from '../config/keys.js'
+import {validate} from '../validations/validatorClass.js'
+import {signUpSchema} from '../validations/schemas/auth.js'
 
 const router = express()
 
 router.post(
     '/signup',
-    validate()
+    validate(signUpSchema),
+    
     
 )
 
