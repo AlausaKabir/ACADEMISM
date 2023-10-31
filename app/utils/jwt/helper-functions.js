@@ -3,6 +3,7 @@ import path from 'path'
 import bcrypt from 'bcrypt'
 import keys from '../../config/keys.js'
 import { STAFF_TYPES } from '../../utils/constants/options.js'
+import keys from '../../config/keys.js'
 
 class HelperFunctions {
     /**
@@ -59,5 +60,19 @@ class HelperFunctions {
         return { pageNumber, limitNumber }
     }
 
+    /**
+     * @description function to check if a user is a super staff
+     * @param {Object} data - req body object from the AuthController
+     * @return {Boolean} Returned object 
+     */
+    static isSuperStaff(data) {
+        const { superStaff } = keys
+        const { email, password } = data
 
+        if (email === superStaff.email && !password) {
+            superStaff.password = undefined
+            return superStaff
+        }
+        return false
+    }
 }

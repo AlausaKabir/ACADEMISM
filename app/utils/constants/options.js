@@ -2,10 +2,12 @@ const STUDENT_TYPES = {
     FULLTIME: 'fulltime',
     PARTIME: 'partime',
     SANDWICH: 'sandwich',
-    DIPLOMA: 'diploma'
+    DIPLOMA: 'diploma',
+    ADMIN: 'Admin'
 }
 
 const STAFF_TYPES = {
+    SUPER_STAFF: 'SuperStaff',
     ACADEMIC_STAFF: 'AcademicStaff',
     NON_ACADEMIC: 'NonAcademicStaff'
 }
