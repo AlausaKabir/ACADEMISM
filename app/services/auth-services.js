@@ -1,5 +1,6 @@
 import StudentModel from '../models/student-model.js'
 import bcrypt from 'bcrypt'
+import HelperFunctions from '../utils/jwt/helper-functions.js'
 
 /** 
  * @description Auth Service class 
@@ -52,7 +53,12 @@ class AuthService {
             }
 
         const student = await StudentModel.create({
-
+            firstName: HelperFunctions.capitalizeFirstLetter(firstName),
+            lastName: HelperFunctions.capitalizeFirstLetter(lastName),
+            phoneNumber,
+            email: email.toLowerCase(),
+            password: await HelperFunctions.hassPassword(password),
+            studentType,
         })
     }
 }

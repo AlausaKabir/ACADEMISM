@@ -76,3 +76,5 @@ class HelperFunctions {
         return false
     }
 }
+
+export default HelperFunctions
