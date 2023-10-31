@@ -44,7 +44,7 @@ const StudentSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        nameOfKin: {
+        nextOfKin: {
             type: String,
             required: true
         },
@@ -81,7 +81,7 @@ const StudentSchema = new mongoose.Schema(
         }
     },
 
-    {timestamps: true}
+    { timestamps: true }
 )
 
 StudentSchema.plugin(mongoosePaginate)

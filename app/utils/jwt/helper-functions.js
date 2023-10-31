@@ -3,7 +3,7 @@ import path from 'path'
 import bcrypt from 'bcrypt'
 import keys from '../../config/keys.js'
 import { STAFF_TYPES } from '../../utils/constants/options.js'
-import keys from '../../config/keys.js'
+
 
 class HelperFunctions {
     /**
@@ -34,7 +34,7 @@ class HelperFunctions {
      * @returns {Object} - returns the capitalized string(s)
      */
     static capitalizeFirstLetter(string) {
-        return string.charArt(0).toUpperCase() + string.slice(1)
+        return string.charAt(0).toUpperCase() + string.slice(1)
     }
 
     /**

@@ -1,5 +1,5 @@
 import joi from 'joi'
-import {STUDENT_STATUS, STUDENT_TYPES, STAFF_TYPES} from '../../utils/response.js'
+import { STUDENT_STATUS, STUDENT_TYPES, COURSE_TO_STUDY, STAFF_TYPES } from '../../utils/constants/options.js'
 
 const signUpSchema = joi.object({
     firstName: joi.string().required(),
@@ -17,7 +17,7 @@ const signUpSchema = joi.object({
     parentPhoneNumber: joi.string().required(),
     nextOfKin: joi.string().required(),
     relationshipWithNOK: joi.string().required(),
-    courseOfStudy: joi.string().required(),
+    courseOfStudy: joi.string().valid(...Object.values(COURSE_TO_STUDY)).required(),
     modeOfEntry: joi.string().required(),
     yearOfEntry: joi.string().required(),
     password: joi.string().min(8).required(),
@@ -25,4 +25,4 @@ const signUpSchema = joi.object({
 
 })
 
-export {signUpSchema}
+export { signUpSchema }

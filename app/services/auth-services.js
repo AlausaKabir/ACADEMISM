@@ -59,8 +59,37 @@ class AuthService {
             email: email.toLowerCase(),
             password: await HelperFunctions.hassPassword(password),
             studentType,
+            dateOfBirth,
+            address,
+            nationality,
+            stateOfOrigin,
+            LGA,
+            religion,
+            nameOfParent,
+            parentAddress,
+            parentPhoneNumber,
+            nextOfKin,
+            relationshipWithNOK,
+            courseOfStudy,
+            modeOfEntry,
+            yearOfEntry,
         })
+
+        student.password = undefined
+
+        logger.info(`studentRegistrationService -> Student Registered Successfully: ${JSON.stringify(student)}`)
+        return {
+            statusCode: 201,
+            message: 'Student Successfully Registered',
+            data: student
+        }
     }
+
+    /**
+     * @description function to log in a Student 
+     * @param {Object} data - req body object from the AuthController
+     * @return {Object} Returned object
+     */
 }
 
 

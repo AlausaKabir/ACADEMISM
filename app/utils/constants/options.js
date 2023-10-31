@@ -19,6 +19,19 @@ const STUDENT_STATUS = {
     EXPELLED: 'expelled'
 }
 
+
+const COURSE_TO_STUDY = {
+    ACCOUNTING: "Accounting",
+    BUSINESS_ADMINISTRATION: "Business Administration",
+    INSURANCE: "Insurance",
+    MARKETING: "Marketing",
+    MTECH: "Mtech",
+    BFN: "BFN",
+    HRM: "HRM",
+    PUBLIC_ADMIN: "Public Admin",
+};
+
+
 const COURSE_CODE = {
     "Accounting": "01",
     "Business Administration": "02",
@@ -34,5 +47,6 @@ export {
     COURSE_CODE,
     STUDENT_TYPES,
     STAFF_TYPES,
-    STUDENT_STATUS
+    STUDENT_STATUS,
+    COURSE_TO_STUDY
 }

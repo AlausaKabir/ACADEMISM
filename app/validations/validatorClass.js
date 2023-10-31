@@ -1,4 +1,4 @@
-import {errorResponse} from '../utils/response.js'
+import { errorResponse } from '../utils/response.js'
 
 
 /**
@@ -15,8 +15,8 @@ class Validations {
      * @returns {boolean}
      */
     static validateInput(schema, object) {
-        const {error, value} = schema.validate(object)
-        return { erorr, value}
+        const { error, value } = schema.validate(object)
+        return { error, value }
     }
 
     /**
@@ -24,7 +24,7 @@ class Validations {
      */
     static validate(schema) {
         return (req, res, next) => {
-            const {error} = Validations.validateInput(schema, {
+            const { error } = Validations.validateInput(schema, {
                 ...req.body,
                 ...req.query,
                 ...req.params
@@ -32,12 +32,12 @@ class Validations {
             if (!error) {
                 return next();
             }
-            loggers.error(error.details[0].message)
+            logger.error(error.details[0].message)
             errorResponse(res, 400, error.details[0].message)
         }
     }
 }
 
-const {validate} = Validations
+const { validate } = Validations
 
-export {validate}
+export { validate }
