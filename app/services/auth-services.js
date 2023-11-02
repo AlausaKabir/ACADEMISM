@@ -1,6 +1,7 @@
 import StudentModel from '../models/student-model.js'
 import bcrypt from 'bcrypt'
 import HelperFunctions from '../utils/jwt/helper-functions.js'
+import UserToken from '../utils/jwt/user-token.js'
 
 /** 
  * @description Auth Service class 
@@ -112,6 +113,19 @@ class AuthService {
                 message: 'Invalid credentials'
             }
 
+        if (student) {
+            const token = await UserToken.generateUserAccessSecretKey(user)
+            logger.info(`userLoginService -> User Login Token created successfully: ${token}`)
+
+            student.password = undefined
+
+            return {
+                statusCode: 200,
+                message: 'Student Successfully Logged In',
+                data: student,
+                token
+            }
+        }
     }
 }
 
