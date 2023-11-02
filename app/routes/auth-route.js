@@ -10,8 +10,13 @@ router.post(
     validate(signUpSchema),
     AuthController.studentRegistrationController
 
-
 )
+
+router.post('/login',
+    validate(loginSchema),
+    AuthController.studentLoginController)
+
+router.get('/get-matric-no',)
 
 
 export default router

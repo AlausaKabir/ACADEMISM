@@ -37,6 +37,27 @@ class AuthController {
         }
     }
 
+    static async studentLoginController(req, res) {
+        try {
+            const result = await AuthService.studentLoginService(req.body)
+            logger.info(`userLoginController -> result: ${JSON.stringify(result)}`)
+            if (result.statusCode === 409) {
+                return errorResponse(res, 409, result.message)
+            } else {
+                return successResponse(
+                    res,
+                    result.statusCode,
+                    result.message,
+                    result.data,
+                    result.token
+                )
+            }
+        } catch (error) {
+            logger.error(`userLoginController - > error: ${JSON.stringify(error)}`)
+            return errorResponse(res, 500, error.message)
+        }
+    }
+
 }
 
 export default AuthController

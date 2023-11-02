@@ -90,6 +90,29 @@ class AuthService {
      * @param {Object} data - req body object from the AuthController
      * @return {Object} Returned object
      */
+    static async studentLoginService(data) {
+        const { email, password } = data
+
+        const student = await StudentModel.findOne({
+            $or: [
+                { email: emailOrPhoneNumber },
+                { phoneNumber: emailOrPhoneNumber }
+            ]
+        });
+        if (!student)
+            return {
+                statusCode: 401,
+                message: 'Invalid credentials or Student not found'
+            }
+        const isPasswordValid = await bcrypt.compare(password, student.password)
+
+        if (!isPasswordValid)
+            return {
+                statusCode: 401,
+                message: 'Invalid credentials'
+            }
+
+    }
 }
 
 
