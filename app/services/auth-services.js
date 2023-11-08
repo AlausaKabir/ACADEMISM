@@ -50,7 +50,7 @@ class AuthService {
         if (studentExist)
             return {
                 statusCode: 409,
-                message: 'Student Email or Phone number already exist'
+                message: 'Student already registered, Contact the admin for resolution'
             }
 
         const student = await StudentModel.create({
@@ -94,12 +94,7 @@ class AuthService {
     static async studentLoginService(data) {
         const { email, password } = data
 
-        const student = await StudentModel.findOne({
-            $or: [
-                { email: emailOrPhoneNumber },
-                { phoneNumber: emailOrPhoneNumber }
-            ]
-        });
+        const student = await StudentModel.findOne({ email });
         if (!student)
             return {
                 statusCode: 401,
@@ -114,7 +109,7 @@ class AuthService {
             }
 
         if (student) {
-            const token = await UserToken.generateUserAccessSecretKey(user)
+            const token = await UserToken.generateUserAccessSecretKey(student)
             logger.info(`userLoginService -> User Login Token created successfully: ${token}`)
 
             student.password = undefined

@@ -31,9 +31,9 @@ class AuthController {
             )
         } catch (error) {
             logger.error(
-                `studentRegistrationController -> error: ${JSON.stringify(error.message)}`
+                `studentRegistrationController -> error: ${JSON.stringify(error)}`
             )
-            return errorResponse(res, 500, error.message)
+            return errorResponse(res, 500, 'Oops! Something went wrong')
         }
     }
 
@@ -53,8 +53,8 @@ class AuthController {
                 )
             }
         } catch (error) {
-            logger.error(`userLoginController - > error: ${JSON.stringify(error)}`)
-            return errorResponse(res, 500, error.message)
+            logger.error(`userLoginController - > error: ${JSON.stringify(error.message)}`)
+            return errorResponse(res, 500, 'Opps, something went wrong')
         }
     }
 

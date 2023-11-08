@@ -9,9 +9,9 @@ class UserToken {
      * @param {Object} user - req body object from user service
      * @returns {Object} - Returned objects
      **/
-    static async generateUserAccessSecretKey(user) {
+    static async generateUserAccessSecretKey(student) {
         const payload = {
-            id: user.id || user._id,
+            id: student.id || student._id,
         };
         const options = {
             expiresIn: keys.jwt.expires,
@@ -29,7 +29,7 @@ class UserToken {
         try {
             const { id } = await jwt.verify(userToken, keys.jwt.secret);
 
-            const user = await UserModel.findById(id);
+            const user = await StudentModel.findById(id);
 
             if (!user)
                 return {
