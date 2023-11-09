@@ -60,7 +60,13 @@ class AuthController {
 
     static async studentMatricNoController(req, res) {
         try {
-
+            const result = await AuthService.studentMatricNoService(req.body)
+            logger.info(`studentMatricNoController -> result: ${JSON.stringify(result)}`)
+            if (result.statusCode === 409) {
+                return errorResponse(res, 409, result.message)
+            } else {
+                return successResponse(res, result.statusCode, result.message, result.data)
+            }
         } catch (error) {
             logger.error(`studentMatricNoController -> error: ${JSON.stringify(error.message)}`)
             return errorResponse(res, 500, 'Opps, something went wrong')
