@@ -40,7 +40,7 @@ class AuthController {
     static async studentLoginController(req, res) {
         try {
             const result = await AuthService.studentLoginService(req.body)
-            logger.info(`userLoginController -> result: ${JSON.stringify(result)}`)
+            logger.info(`studentLoginController -> result: ${JSON.stringify(result)}`)
             if (result.statusCode === 409) {
                 return errorResponse(res, 409, result.message)
             } else {
@@ -53,11 +53,19 @@ class AuthController {
                 )
             }
         } catch (error) {
-            logger.error(`userLoginController - > error: ${JSON.stringify(error.message)}`)
+            logger.error(`studentLoginController -> error: ${JSON.stringify(error.message)}`)
             return errorResponse(res, 500, 'Opps, something went wrong')
         }
     }
 
+    static async studentMatricNoController(req, res) {
+        try {
+
+        } catch (error) {
+            logger.error(`studentMatricNoController -> error: ${JSON.stringify(error.message)}`)
+            return errorResponse(res, 500, 'Opps, something went wrong')
+        }
+    }
 }
 
 export default AuthController
