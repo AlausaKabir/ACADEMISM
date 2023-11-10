@@ -11,8 +11,10 @@ class MatriculationNumber {
      * @param {*} registrationCount - Serial generations
      * @returns 
      */
-
     static generateMatriculationNumber(course, registrationCount) {
+        // Get the last two digits of the current year
+        const currentYear = new Date().getFullYear().toString().slice(-2);
+
         // Get the current date to obtain the month part
         const currentDate = new Date();
         const monthPart = (currentDate.getMonth() + 1).toString().padStart(2, '0');
@@ -23,8 +25,8 @@ class MatriculationNumber {
         // Ensure the registration count is a two-digit number
         const registrationPart = registrationCount.toString().padStart(2, '0');
 
-        // Concatenate the parts to form the matriculation number
-        const matriculationNumber = `${monthPart}${coursePart}${registrationPart}`;
+        // Concatenate the parts to form the matriculation number with the year prefix
+        const matriculationNumber = `${currentYear}${monthPart}${coursePart}${registrationPart}`;
 
         return matriculationNumber;
     }

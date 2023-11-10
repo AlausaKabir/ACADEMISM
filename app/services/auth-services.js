@@ -2,6 +2,7 @@ import StudentModel from '../models/student-model.js'
 import bcrypt from 'bcrypt'
 import HelperFunctions from '../utils/jwt/helper-functions.js'
 import UserToken from '../utils/jwt/user-token.js'
+import { MatriculationNumber } from '../utils/constants/students-matric.js'
 
 /** 
  * @description Auth Service class 
@@ -121,6 +122,45 @@ class AuthService {
                 token
             }
         }
+    }
+
+    static async studentMatricNo(data) {
+        const { email, courseOfStudy } = data;
+
+        const student = await StudentModel.findOne({ email });
+        if (!student)
+            return {
+                statusCode: 401,
+                message: 'Student credentials not found'
+            }
+
+        if (!courseOfStudy) {
+            return {
+                statusCode: 400,
+                message: 'Please provide the course to study ',
+            };
+        }
+
+
+        const updatedStudent = await StudentModel.findOneAndUpdate(
+            { courseOfStudy },
+            { new: true } // Return the modified document and use the updated method
+        );
+
+        const matriculationNumber = MatriculationNumber.generateMatriculationNumber(courseOfStudy, updatedStudent.registrationCount);
+
+        // Update the student document with the generated matriculation number
+        await StudentModel.updateOne(
+            { _id: updatedStudent._id },
+            { $set: { matriculationNumber } }
+        );
+
+        return {
+            statusCode: 200,
+            message: 'Matriculation number generated and Student data updated successfully',
+            data: { matriculationNumber },
+        };
+
     }
 }
 
