@@ -144,12 +144,12 @@ class AuthService {
 
         const updatedStudent = await StudentModel.findOneAndUpdate(
             { courseOfStudy },
-            { new: true } // Return the modified document and use the updated method
+            { new: true }
         );
 
         const matriculationNumber = MatriculationNumber.generateMatriculationNumber(courseOfStudy, updatedStudent.registrationCount);
 
-        // Update the student document with the generated matriculation number
+
         await StudentModel.updateOne(
             { _id: updatedStudent._id },
             { $set: { matriculationNumber } }
