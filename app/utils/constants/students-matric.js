@@ -1,4 +1,4 @@
-import COURSE_CODE from './options.js'
+import { COURSE_CODE } from './options.js'
 // Modify the generateMatriculationNumber function to accept department names
 /**
  * @description Matriculation No. Generation
