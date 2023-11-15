@@ -17,8 +17,9 @@ router.post('/login',
     AuthController.studentLoginController)
 
 router.put('/get-matric-no',
-    validate(loginSchema),
+    // validate(loginSchema),
     AuthController.studentMatricNoController)
+
 router.get('/get-matric-no',)
 
 

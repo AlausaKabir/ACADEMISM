@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import { STUDENT_TYPES } from '../utils/constants/options.js'
+import { STUDENT_TYPES, COURSE_TO_STUDY } from '../utils/constants/options.js'
 import mongoosePaginate from 'mongoose-paginate-v2'
 
 const StudentSchema = new mongoose.Schema(
@@ -50,6 +50,7 @@ const StudentSchema = new mongoose.Schema(
         },
         courseOfStudy: {
             type: String,
+            enum: Object.values(COURSE_TO_STUDY),
             required: true
         },
         modeOfEntry: {

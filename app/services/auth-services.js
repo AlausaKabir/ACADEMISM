@@ -124,7 +124,7 @@ class AuthService {
         }
     }
 
-    static async studentMatricNo(data) {
+    static async studentMatricNoService(data) {
         const { email, courseOfStudy } = data;
 
         const student = await StudentModel.findOne({ email });
@@ -141,14 +141,20 @@ class AuthService {
             };
         }
 
+        console.log(student, "student");
+
+        await StudentModel.updateMany({ registrationCount: { $exists: false } }, { $set: { registrationCount: 0 } });
+
 
         const updatedStudent = await StudentModel.findOneAndUpdate(
             { courseOfStudy },
-            { new: true }
+            { $inc: { registrationCount: 1 } },
+            { new: true, useFindAndModify: false }
         );
 
+        console.log(updatedStudent, "updatedStudent");
         const matriculationNumber = MatriculationNumber.generateMatriculationNumber(courseOfStudy, updatedStudent.registrationCount);
-
+        console.log(matriculationNumber, "matriculationNumber");
 
         await StudentModel.updateOne(
             { _id: updatedStudent._id },
