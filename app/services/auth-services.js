@@ -141,10 +141,17 @@ class AuthService {
             };
         }
 
+        // Check if the provided courseOfStudy matches the one the student registered with
+        if (student.courseOfStudy !== courseOfStudy) {
+            return {
+                statusCode: 400,
+                message: 'Mismatch in the course of study',
+            };
+        }
+
         console.log(student, "student");
 
         await StudentModel.updateMany({ registrationCount: { $exists: false } }, { $set: { registrationCount: 0 } });
-
 
         const updatedStudent = await StudentModel.findOneAndUpdate(
             { courseOfStudy },
@@ -152,9 +159,11 @@ class AuthService {
             { new: true, useFindAndModify: false }
         );
 
-        console.log(updatedStudent, "updatedStudent");
-        const matriculationNumber = MatriculationNumber.generateMatriculationNumber(courseOfStudy, updatedStudent.registrationCount);
-        console.log(matriculationNumber, "matriculationNumber");
+        console.log("Updated Student:", updatedStudent);
+
+        const registrationCount = updatedStudent ? updatedStudent.registrationCount || 0 : 0;
+
+        const matriculationNumber = MatriculationNumber.generateMatriculationNumber(courseOfStudy, registrationCount);
 
         await StudentModel.updateOne(
             { _id: updatedStudent._id },
@@ -166,8 +175,8 @@ class AuthService {
             message: 'Matriculation number generated and Student data updated successfully',
             data: { matriculationNumber },
         };
-
     }
+
 }
 
 
