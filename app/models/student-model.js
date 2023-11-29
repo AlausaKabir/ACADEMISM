@@ -12,6 +12,9 @@ const StudentSchema = new mongoose.Schema(
             type: String,
             required: true
         },
+        matriculationNumber: {
+            type: String,
+        },
         email: {
             type: String,
             required: true

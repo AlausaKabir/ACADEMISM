@@ -22,5 +22,7 @@ router.put('/get-matric-no',
 
 router.get('/get-matric-no',)
 
+router.get('/acceptance-fee', AuthController.studentAcceptanceFee)
+
 
 export default router

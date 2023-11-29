@@ -128,12 +128,14 @@ class AuthService {
         const { email, courseOfStudy } = data;
 
         const student = await StudentModel.findOne({ email });
-        if (!student)
+        if (!student) {
             return {
                 statusCode: 401,
                 message: 'Student credentials not found'
-            }
+            };
+        }
 
+        console.log(student, "student");
         if (!courseOfStudy) {
             return {
                 statusCode: 400,
@@ -141,7 +143,6 @@ class AuthService {
             };
         }
 
-        // Check if the provided courseOfStudy matches the one the student registered with
         if (student.courseOfStudy !== courseOfStudy) {
             return {
                 statusCode: 400,
@@ -149,12 +150,9 @@ class AuthService {
             };
         }
 
-        console.log(student, "student");
-
-        await StudentModel.updateMany({ registrationCount: { $exists: false } }, { $set: { registrationCount: 0 } });
-
+        // Update registrationCount for the specific courseOfStudy
         const updatedStudent = await StudentModel.findOneAndUpdate(
-            { courseOfStudy },
+            { _id: student._id },
             { $inc: { registrationCount: 1 } },
             { new: true, useFindAndModify: false }
         );
@@ -165,10 +163,19 @@ class AuthService {
 
         const matriculationNumber = MatriculationNumber.generateMatriculationNumber(courseOfStudy, registrationCount);
 
+        // Update matriculationNumber for the specific student
         await StudentModel.updateOne(
             { _id: updatedStudent._id },
             { $set: { matriculationNumber } }
         );
+
+        // const matricNoExist = await StudentModel.findOne({ matriculationNumber });
+        // if (matricNoExist) {
+        //     return {
+        //         statusCode: 400,
+        //         message: 'Student already has a Matriculation Number. Contact the School admin'
+        //     };
+        // }
 
         return {
             statusCode: 200,
@@ -176,6 +183,8 @@ class AuthService {
             data: { matriculationNumber },
         };
     }
+
+
 
 }
 

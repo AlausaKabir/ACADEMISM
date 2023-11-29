@@ -72,6 +72,14 @@ class AuthController {
             return errorResponse(res, 500, 'Opps, something went wrong')
         }
     }
+
+    static async studentAcceptanceFee(req, res) {
+        try {
+
+        } catch (error) {
+
+        }
+    }
 }
 
 export default AuthController
